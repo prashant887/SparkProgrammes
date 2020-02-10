@@ -44,12 +44,13 @@ object AttandenceExecrcise {
 
     //AttendenceDF.show()
 
+    println("\n Sita's Attendence \n")
     val SitaDF=StudentDF.filter(lower($"Name")==="sita")
         .join(AttendenceDF,$"Attendance.Id"===$"Student.ID")
         .select($"Student.Name",$"Attendance.Date")
         .as("Sita")
 
-    //SitaDF.show()
+    SitaDF.show()
     val NonSitaDF=AttendenceDF.join(SitaDF,$"Attendance.Date"===$"Sita.Date")
       .join(StudentDF,$"Attendance.Id"===$"Student.ID")
         .filter(lower($"Student.Name")=!="sita")
